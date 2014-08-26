@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class IngredientScript : MonoBehaviour {
 	public float speed = 1.0f;
     public bool placed = false;
 	public bool destroyed = false;
+	public int type = 0;
+	public List<Material> colors;
 
 	// Use this for initialization
 	void Start () {
 		Input.simulateMouseWithTouches = true;
+		Spawn ();
 	}
 	
 	// Update is called once per frame
@@ -24,7 +28,7 @@ public class IngredientScript : MonoBehaviour {
 			placed = true;
 		}
 		if (c.gameObject.tag == "Garbage") {
-			this.transform.position = new Vector3(-20.0f, 0.7f, 0.0f);
+			Spawn ();
 		}
 	}
 
@@ -35,5 +39,13 @@ public class IngredientScript : MonoBehaviour {
 			this.rigidbody2D.angularVelocity += 180.0f;
 			this.gameObject.collider2D.isTrigger = true;
 		}
+	}
+
+	public void Spawn() {
+		this.transform.position = new Vector3(-10.0f, -1.4f, 0.0f);
+		placed = false;
+		destroyed = false;
+		type = Random.Range (0, 6);
+		this.GetComponent<MeshRenderer>().material = colors[type];
 	}
 }
