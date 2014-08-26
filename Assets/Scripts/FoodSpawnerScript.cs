@@ -9,15 +9,23 @@ public class FoodSpawnerScript : MonoBehaviour {
 	public List<Transform> ingredients;
 	public List<Transform> addedBuns;
 	public int             bunCount = 0;
+	public GameControllerScript gcScript;
+	public float		   foodSpeed = 3.0f;
+
+	void Start() {
+		gcScript = GameObject.Find ("GameController").GetComponent<GameControllerScript>();
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Time.time - lastSpawn >= spawnInterval) {
 			lastSpawn = Time.time;
 			var food = Instantiate(foodPrefab) as Transform;
-			food.GetComponent<IngredientScript>().Spawn ();
-			food.GetComponent<IngredientScript>().parentScript = this;
-			food.parent = this.transform;
+			IngredientScript iscript = food.GetComponent<IngredientScript>();
+			iscript.Spawn ();
+			iscript.parentScript = this;
+			iscript.speed        = foodSpeed;
+			food.parent          = this.transform;
 			ingredients.Add(food);
 		}
 	}
@@ -41,7 +49,8 @@ public class FoodSpawnerScript : MonoBehaviour {
 			int start = -1;
 			int end   = -1;
 			for (int i = 0; i < ingredients.Count; i++) {
-				if (ingredients[i].GetComponent<IngredientScript>().type == 0) {
+				IngredientScript iscript = ingredients[i].GetComponent<IngredientScript>();
+				if (iscript.type == 0 && iscript.placed && !iscript.destroyed) {
 					if (start == -1) {
 						start = i;
 					} else if (end == -1) {
@@ -54,6 +63,7 @@ public class FoodSpawnerScript : MonoBehaviour {
 				ingredient.GetComponent<IngredientScript>().Remove ();
 			}
 			addedBuns.Clear();
+			gcScript.AddPoints((end - start) * 100);
 		}
 	}
 }

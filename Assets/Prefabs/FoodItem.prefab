@@ -125,7 +125,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mass: 1
+  m_Mass: .100000001
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 1
@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aec5fc091c19a442a341918922f9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
   placed: 0
   destroyed: 0
   type: 0
@@ -190,6 +190,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 398feaf48bf99e54a8f770d38a2f0223, type: 2}
   - {fileID: 2100000, guid: 5c17a494bb89d1546aa31eab20921f64, type: 2}
   neighbors: []
+  parentScript: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

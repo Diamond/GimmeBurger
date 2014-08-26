@@ -8,11 +8,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400000}
-  - 114: {fileID: 11400000}
+  - 60: {fileID: 6000000}
   m_Layer: 0
-  m_Name: Food Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 120240766, guid: 0000000000000000d000000000000000, type: 0}
+  m_Name: Garbage
+  m_TagString: Garbage
+  m_Icon: {fileID: 266726316, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -23,28 +23,27 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -15.6730003, y: -3.6164999, z: 0}
+  m_LocalScale: {x: 8.06248569, y: 6.64998817, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &11400000
-MonoBehaviour:
+--- !u!60 &6000000
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11050030aa75a6841a540ab3cb9cf18b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastSpawn: 0
-  spawnInterval: 3
-  foodPrefab: {fileID: 400000, guid: d4b4b60b343080646a98151333ad6105, type: 2}
-  ingredients: []
-  addedBuns: []
-  bunCount: 0
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Poly:
+    m_Paths:
+    - - {x: .303284943, y: .254914999}
+      - {x: .296599686, y: -.387685925}
+      - {x: 3.80420041, y: -.876752198}
+      - {x: -.587785363, y: -.809016943}
+      - {x: -.95105648, y: .309017122}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -10,11 +10,13 @@ public class IngredientScript : MonoBehaviour {
 	public List<Material> colors;
 	public List<Transform> neighbors;
 	public FoodSpawnerScript parentScript;
+	public GameControllerScript gcScript;
 
 	// Use this for initialization
 	void Start () {
 		Input.simulateMouseWithTouches = true;
 		Spawn ();
+		gcScript = GameObject.Find ("GameController").GetComponent<GameControllerScript>();
 	}
 	
 	// Update is called once per frame
@@ -35,6 +37,7 @@ public class IngredientScript : MonoBehaviour {
 				}
 			}
 			if (same >= 1) {
+				gcScript.AddPoints((same + 1) * 50);
 				Debug.Log ("Score!");
 				Remove ();
 			}
@@ -45,6 +48,10 @@ public class IngredientScript : MonoBehaviour {
 		if (c.gameObject.tag == "Plate" && !placed && !destroyed) {
 			this.transform.position = new Vector3(2.5f, 4.5f, 0.0f);
 			placed = true;
+		}
+
+		if (c.gameObject.tag == "Table" && placed && !destroyed) {
+			Application.LoadLevel(0);
 		}
 	}
 
