@@ -24,6 +24,9 @@ public class IngredientScript : MonoBehaviour {
 		}
 
 		if (placed && !destroyed) {
+			if (type == 0 && neighbors.Count > 0 && !parentScript.addedBuns.Contains(this.transform)) {
+				parentScript.AddBun(this);
+			}
 			int same = 0;
 			foreach (Transform neighbor in neighbors) {
 				if (neighbor.GetComponent<IngredientScript>().type == type) {
@@ -48,6 +51,7 @@ public class IngredientScript : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c) {
 		if (c.gameObject.tag == "Garbage") {
 			Destroy (this.gameObject);
+			parentScript.ingredients.Remove (this.transform);
 			parentScript.ResetIngredients();
 		}
 	}

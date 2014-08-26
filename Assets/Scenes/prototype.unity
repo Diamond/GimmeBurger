@@ -446,6 +446,8 @@ MonoBehaviour:
   lastSpawn: 0
   spawnInterval: 3
   foodPrefab: {fileID: 400000, guid: d4b4b60b343080646a98151333ad6105, type: 2}
+  ingredients: []
+  bunCount: 0
 --- !u!1 &596067973
 GameObject:
   m_ObjectHideFlags: 0

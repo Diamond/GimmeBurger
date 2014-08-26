@@ -7,6 +7,8 @@ public class FoodSpawnerScript : MonoBehaviour {
 	public float           spawnInterval = 3.0f;
 	public Transform       foodPrefab;
 	public List<Transform> ingredients;
+	public List<Transform> addedBuns;
+	public int             bunCount = 0;
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,6 +30,30 @@ public class FoodSpawnerScript : MonoBehaviour {
 		}
 		foreach (Transform ingredient in ingredients) {
 			ingredient.GetComponent<IngredientScript>().neighbors.Clear();
+		}
+	}
+
+	public void AddBun(IngredientScript bun) {
+		addedBuns.Add(bun.transform);
+		Debug.Log ("Added bun!");
+		bunCount++;
+		if (bunCount % 2 == 0) {
+			int start = -1;
+			int end   = -1;
+			for (int i = 0; i < ingredients.Count; i++) {
+				if (ingredients[i].GetComponent<IngredientScript>().type == 0) {
+					if (start == -1) {
+						start = i;
+					} else if (end == -1) {
+						end = i;
+					}
+				}
+			}
+			for (int i = start; i <= end; i++) {
+				var ingredient = ingredients[i];
+				ingredient.GetComponent<IngredientScript>().Remove ();
+			}
+			addedBuns.Clear();
 		}
 	}
 }
